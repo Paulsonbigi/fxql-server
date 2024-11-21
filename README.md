@@ -8,7 +8,7 @@ Backend Developer Technical Assessment
 # install dependencies
 $ yarn install
 
-# watch mode
+# start app
 $ yarn run dev
 ```
 
