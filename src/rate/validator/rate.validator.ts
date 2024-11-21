@@ -10,7 +10,7 @@ export const createRateValidator = Joi.object().keys({
       'any.required': `Source currency cannot be empty`,
       'string.length': `Source currency must be exactly 3 characters`,
     })
-    .custom((value, helpers) => {
+    .custom((value: any, helpers: any) => {
       if (value !== value.toUpperCase()) {
         return helpers.error('any.custom', {
           customMessage: `Invalid: '${value}' should be '${value.toUpperCase()}'`,
@@ -27,7 +27,7 @@ export const createRateValidator = Joi.object().keys({
       'any.required': `Source currency cannot be empty`,
       'string.length': `Source currency must be exactly 3 characters`,
     })
-    .custom((value, helpers) => {
+    .custom((value: any, helpers: any) => {
       if (value !== value.toUpperCase()) {
         return helpers.error('any.custom', {
           customMessage: `Invalid: '${value}' should be '${value.toUpperCase()}'`,
@@ -36,7 +36,7 @@ export const createRateValidator = Joi.object().keys({
       return value;
     }),
   CapAmount: Joi.required()
-    .custom((value, helpers) => {
+    .custom((value: any, helpers: any) => {
       if (typeof value !== 'number') {
         return helpers.error('any.invalid', { value });
       }
@@ -51,7 +51,7 @@ export const createRateValidator = Joi.object().keys({
       'any.required': `Invalid: Empty FXQL statement`,
     }),
   BUY: Joi.required()
-    .custom((value, helpers) => {
+    .custom((value: any, helpers: any) => {
       if (typeof value !== 'number') {
         return helpers.error('any.invalid', { value });
       }
@@ -66,7 +66,7 @@ export const createRateValidator = Joi.object().keys({
       'any.required': `Invalid: Empty FXQL statement`,
     }),
   SELL: Joi.required()
-    .custom((value, helpers) => {
+    .custom((value: any, helpers: any) => {
       if (typeof value !== 'number') {
         return helpers.error('any.invalid', { value });
       }
