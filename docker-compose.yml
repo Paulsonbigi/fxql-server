@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: fxql_foreign_exchange
+    build: .
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${SERVER_PORT}
+    command: yarn start:dev
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    volumes:
+      - .:/src
+      - /src/node_modules
+    depends_on:
+      - db
+
+  db:
+    image: postgres:17
+    container_name: nestjs-db
+    ports:
+      - '${POSTGRES_DB_PORT}:${POSTGRES_DB_PORT}'
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - REFRESH_JWT_SECRET=${REFRESH_JWT_SECRET}
+      - ENABLE_DATABASE_LOGGING=${ENABLE_DATABASE_LOGGING}
+      - ENABLE_DATABASE_SSL=${ENABLE_DATABASE_SSL}
+      - DEFAULT_THROTTLER_TTL=${DEFAULT_THROTTLER_TTL}
+      - SERVER_PORT=${SERVER_PORT}
+      - DATABASE_URL=${DATABASE_URL}
+      - DEFAULT_THROTTLER_LIMIT=${DEFAULT_THROTTLER_LIMIT}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
